@@ -1,0 +1,69 @@
+configurations {
+	shade
+	compile.extendsFrom shade
+}
+
+buildscript {
+	ext.kotlinVersion = "1.0.2"
+	repositories {
+		jcenter()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+	}
+	dependencies {
+		classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+	}
+}
+apply plugin: "kotlin"
+apply plugin: "idea"
+apply plugin: "net.minecraftforge.gradle.forge"
+
+archivesBaseName = "workbench-upgrades"
+group = "cpup.mc.workbenchUpgrades"
+version = "dev"
+
+dependencies.shade "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+dependencies.shade "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+minecraft {
+	version = "1.9.4-12.17.0.1954"
+	runDir = "run"
+	mappings = "snapshot_20160518"
+}
+
+reobf {
+	jar {
+		extraLines "PK: kotlin cpup/mc/shade/kotlin"
+		extraLines "PK: org/jetbrains/annotations cpup/mc/shade/org/jetbrains/annotations"
+	}
+}
+
+jar {
+	configurations.shade.each { dep ->
+		from(project.zipTree(dep)) {
+			exclude "META-INF", "META-INF/**"
+		}
+	}
+}
+
+processResources {
+	// this will ensure that this task is redone when the versions change.
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.minecraft.version
+
+	// replace stuff in mcmod.info, nothing else
+	from(sourceSets.main.resources.srcDirs) {
+		include "mcmod.info"
+
+		// replace version and mcversion
+		expand "version":project.version, "mcversion":project.minecraft.version
+	}
+
+	// copy everything else, thats not the mcmod.info
+	from(sourceSets.main.resources.srcDirs) {
+		exclude "mcmod.info"
+	}
+}

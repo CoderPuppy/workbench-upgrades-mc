@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "minecraft:blocks/iron_block",
+    "up": "minecraft:blocks/crafting_table_top"
+  }
+}

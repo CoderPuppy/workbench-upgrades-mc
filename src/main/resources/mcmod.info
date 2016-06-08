@@ -1,0 +1,15 @@
+[
+	{
+		"modid": "workbench-upgrades",
+		"name": "Workbench Upgrades",
+		"description": "Iron and Diamond Workbenches",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "https://github.com/CoderPuppy/workbench-upgrades",
+		"updateUrl": "",
+		"authorList": ["CoderPuppy"],
+		"logoFile": "",
+		"screenshots": [],
+		"dependencies": []
+	}
+]

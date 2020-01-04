@@ -9,8 +9,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 class ContainerWorkbench(inv: InventoryPlayer, private val world: World, private val pos: BlockPos): ContainerWorkbench(inv, world, pos) {
-
-		override fun canInteractWith(p_canInteractWith_1_: EntityPlayer): Boolean {
+	override fun canInteractWith(p_canInteractWith_1_: EntityPlayer): Boolean {
 		return if (world.getBlockState(this.pos).block !== WorkbenchUpgrades.block) false else p_canInteractWith_1_.getDistanceSq(this.pos.x.toDouble() + 0.5, this.pos.y.toDouble() + 0.5, this.pos.z.toDouble() + 0.5) <= 64.0
 	}
 

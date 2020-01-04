@@ -39,7 +39,7 @@ class WorkbenchGUI(inv: InventoryPlayer, world: World, pos: BlockPos): GuiContai
 		super.actionPerformed(button)
 		button!!
 		if(inventorySlots.enchantItem(mc.thePlayer, button.id)) {
-			mc.playerController.sendEnchantPacket(inventorySlots.windowId, button.id)
+			mc.playerController!!.sendEnchantPacket(inventorySlots.windowId, button.id)
 		}
 	}
 

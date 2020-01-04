@@ -29,7 +29,7 @@ dependencies.shade "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 dependencies.shade "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
 minecraft {
-	version = "1.9.4-12.17.0.1954"
+	version = "1.10.2-12.18.1.2027"
 	runDir = "run"
 	mappings = "snapshot_20160518"
 }
